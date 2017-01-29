@@ -1,5 +1,6 @@
 [core]
 	editor = vim
+	excludesfile = /home/andrey/.gitexcludes
 [user]
 	email = jeron312@gmail.com
 	name = Andrey Gonchar

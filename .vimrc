@@ -38,7 +38,6 @@ filetype plugin indent on    " required
 
 colorscheme colorsbox-material
 map <C-n> :NERDTreeToggle<CR>
-set wrap
 set number
 set showmatch
 set showmode

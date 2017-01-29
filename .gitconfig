@@ -1,1 +1,7 @@
-/home/andrey/.gitconfig
+[core]
+	editor = vim
+[user]
+	email = jeron312@gmail.com
+	name = Andrey Gonchar
+[color]
+	ui = true

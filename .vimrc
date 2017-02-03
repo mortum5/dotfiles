@@ -59,4 +59,6 @@ set autoindent
 set autochdir
 nmap j gj
 nmap k gk
+nmap <UP> gk
+nmap <DOWN> gj
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯЖ;ABCDEFGHIJKLMNOPQRSTUVWXYZ:,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz

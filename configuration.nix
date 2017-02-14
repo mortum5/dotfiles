@@ -22,11 +22,18 @@
 	programs = {
 		zsh.enable = true;
 	};
+
+	hardware.pulseaudio.enable = true;	
+
+	nix.extraOptions = ''
+		connect-timeout = 10
+	'';
 	
 	services.xserver = {
 		enable		= true;
 		layout 		= "us,ru";
-		
+		xkbOptions      = "grp:ctrl_shift_toggle";
+			
 		displayManager.lightdm = {
 			enable  = true;
 		};

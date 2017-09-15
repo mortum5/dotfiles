@@ -13,14 +13,22 @@ Plugin 'VundleVim/Vundle.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
-
+Plugin 'majutsushi/tagbar'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'scrooloose/syntastic'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'suan/vim-instant-markdown'
+Plugin 'urso/haskell_syntax.vim'
+Plugin 'eagletmt/neco-ghc'
+Plugin 'shougo/vimproc.vim'
+Plugin 'eagletmt/ghcmod-vim'
+Plugin 'ervandew/supertab'
 Plugin 'kien/ctrlp.vim'
+Plugin 'nbouscal/vim-stylish-haskell'
+Plugin 'mpickering/hlint-refactor-vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+"Plugin 'vim-airline/vim-airline'
+"Plugin 'vim-airline/vim-airline-themes'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -35,12 +43,38 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
 
-colorscheme colorsbox-material
+if has("gui_running")
+  imap <c-space> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
+else " no gui
+  if has("unix")
+    inoremap <Nul> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
+  endif
+endif
+
+if has('persistent_undo')      "check if your vim version supports it
+  set undofile                 "turn on the feature  
+  set undodir=$HOME/.vim/undo  "directory where the undo files will be stored
+  endif   
+
+let g:haskellmode_completion_ghc = 1
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+syntax enable
+colorscheme fx
+colorscheme luna-term
 map <C-n> :NERDTreeToggle<CR>
+vmap <C-C> "+yi
+imap <C-V> <esc>"+gPi
+map <silent> tw :GhcModTypeInsert<CR>:w<CR>
+map <silent> ts :GhcModSplitFunCase<CR>:w<CR>
+map <silent> tq :GhcModType<CR>
+map <silent> te :GhcModTypeClear<CR>
+imap jj <Esc>
 set number
 set showmatch
 set showmode
+setlocal formatprg=hindent
 set showcmd
 set wildmenu
 set matchtime=2
@@ -52,7 +86,6 @@ set shiftwidth=4
 set softtabstop=4
 set nobackup
 set noswapfile
-syntax on
 set hlsearch
 set incsearch
 set autoindent
